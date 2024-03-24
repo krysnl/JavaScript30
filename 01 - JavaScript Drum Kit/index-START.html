@@ -59,7 +59,20 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  window.addEventListener('keydown', function(event) {
+    const keyCode = event.key.toUpperCase().charCodeAt(0);
+    const divElement = document.querySelector(`div[data-key="${keyCode}"]`);
+    const audioElement = document.querySelector(`audio[data-key="${keyCode}"]`);
+    
+    if (divElement && audioElement){
+      divElement.classList.add('playing');
+      audioElement.currentTime = 0;
+      audioElement.play();
+      setTimeout(() => {
+        divElement.classList.remove('playing')
+      },100);
+    }
+  });
 </script>
 
 
